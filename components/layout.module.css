@@ -1,7 +1,11 @@
 .container {
-  max-width: 36rem;
+  max-width: 50rem;
   padding: 0 1rem;
   margin: 3rem auto 6rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
@@ -12,4 +16,40 @@
 
 .backToHome {
   margin: 3rem 0 0;
+}
+
+.description{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalBackground{
+  width: 60vw;
+  height: 60vh;
+  right: 20%;
+  margin-top: 50px;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.modalContainer {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.formTicket{
+  background-color: white;
+  margin-left: 0px;
 }

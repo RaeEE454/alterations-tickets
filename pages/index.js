@@ -2,6 +2,11 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData} from '../lib/posts';
+import searchBar from '../components/search';
+import {useState} from 'react';
+import Modal from '../components/modal';
+
+
 
 export async function getStaticProps(){
   const allPostsData = getSortedPostsData();
@@ -12,17 +17,32 @@ export async function getStaticProps(){
   };
 }
 
-export default function Home({allPostsData}) {
+export default function Home() {
+
+    const [openModal, setOpenModal] = useState(false);
+
+    
+
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <main>
       <section className={utilStyles.headingMd}>
-        <p>Search for any requested alteration or update system with new alterations</p>
+        <p>Catalog tickets for future reference!</p>
         
+
       </section>
-      
+      <br />
+      <button type="button" className={utilStyles.ticketBtn} onClick={() => {
+        setOpenModal(true);
+      }}>Create New Ticket</button>
+            {openModal && <Modal />}
+      <br />
+    
+      </main>
     </Layout>
+    
   );
 }
