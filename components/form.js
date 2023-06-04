@@ -25,7 +25,6 @@ export default function Form() {
         <input type="text"
          name="first"
          required
-         placeholder="First Name"
          value={firstName}
          onChange={(e) => setFirstName(e.target.value)} />
    
