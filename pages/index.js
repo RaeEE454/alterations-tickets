@@ -46,3 +46,6 @@ export default function Home() {
     
   );
 }
+
+// once submitted, I need an alert that says it was submitted successfully 
+//and needs to include an exit button to return to home page
