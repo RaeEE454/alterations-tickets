@@ -5,14 +5,14 @@ export default  async function (req, res)  {
         // ...
     } else if(req.method === 'POST') {
         try{
-            const {ticket_number, first_name, last_name, alteration_description} = req.body;
+            const {ticket_number, first_name, last_name, alteration_description, employee} = req.body;
             const newTicket = await pool.query({
-                text: "INSERT INTO newTickets (ticket_number, first_name, last_name, alteration_description) VALUES ($1, $2, $3, $4) RETURNING *",
-                values: [ticket_number, first_name, last_name, alteration_description],
+                text: "INSERT INTO newTickets (ticket_number, first_name, last_name, alteration_description, employee) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+                values: [ticket_number, first_name, last_name, alteration_description, employee],
                 name: "createTicket"
             });
     
-            res.json(newTicket.rows[0]);
+            res.json(newTicket.rows);
         } catch(err){
             console.log(err.message);
             res.json({error: err.message})

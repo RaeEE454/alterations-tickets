@@ -6,5 +6,5 @@ CREATE TABLE newTickets(
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     alteration_description VARCHAR(400)
-
+    employee VARCHAR(50)
 )

@@ -57,5 +57,7 @@ form {
   flex-direction: column;
   align-items: center;
   border-style: ridge;
+  height: auto;
+
 }
 
