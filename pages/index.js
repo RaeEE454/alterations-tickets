@@ -20,6 +20,7 @@ export async function getStaticProps(){
 export default function Home() {
 
     const [openModal, setOpenModal] = useState(false);
+    const [openManifest, setOpenManifest] = useState(false);
 
     
 
@@ -40,7 +41,7 @@ export default function Home() {
       }}>Create New Ticket</button>
             {openModal && <Modal />}
       <br />
-    
+      
       </main>
     </Layout>
     

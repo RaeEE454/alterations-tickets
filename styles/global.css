@@ -51,13 +51,7 @@ p{
   align-items: center;
 }
 
-form {
-  background-color: lightgray;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-style: ridge;
-  height: auto;
 
-}
+
+
 

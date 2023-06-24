@@ -24,7 +24,7 @@ export default function Form() {
 
 
     return (
-      <form action="/api/tickets" method="post">
+      <form action="/api/tickets" method="post" class="form-tickets">
         <label > <h2> New Ticket</h2></label>
 
         <label htmlFor="ticket"><h4>Ticket Number</h4></label>

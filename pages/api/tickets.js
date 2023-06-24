@@ -11,8 +11,8 @@ export default  async function (req, res)  {
                 values: [ticket_number, first_name, last_name, alteration_description, employee],
                 name: "createTicket"
             });
-    
-            res.json(newTicket.rows);
+
+        res.json("Database updated succesfully");            
         } catch(err){
             console.log(err.message);
             res.json({error: err.message})
