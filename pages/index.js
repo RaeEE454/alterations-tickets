@@ -2,9 +2,10 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData} from '../lib/posts';
-import searchBar from '../components/search';
 import {useState} from 'react';
 import Modal from '../components/modal';
+
+
 
 
 
@@ -20,12 +21,15 @@ export async function getStaticProps(){
 export default function Home() {
 
     const [openModal, setOpenModal] = useState(false);
-    const [openManifest, setOpenManifest] = useState(false);
+    // const [openManifest, setOpenManifest] = useState(false);
+
+
+  return (
+    
 
     
 
-  return (
-    <Layout home>
+    <Layout home={false}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -39,7 +43,8 @@ export default function Home() {
       <button type="button" className={utilStyles.ticketBtn} onClick={() => {
         setOpenModal(true);
       }}>Create New Ticket</button>
-            {openModal && <Modal />}
+            {openModal && <Modal onClose={() => {setOpenModal(false)}}/>}
+            
       <br />
       
       </main>
@@ -50,3 +55,12 @@ export default function Home() {
 
 // once submitted, I need an alert that says it was submitted successfully 
 //and needs to include an exit button to return to home page
+
+
+// import '../styles/global.css';
+// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+
+// export default function App({ Component, pageProps }) {
+//     return <Component {...pageProps} />;
+// }

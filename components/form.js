@@ -1,30 +1,97 @@
+"use client";
 import { useState} from 'react';
 import styles from './layout.module.css';
+import {useRouter} from 'next/router';
 
-export default function Form() {
+export default function Form({onSuccess}) {
 
     const [ticket_number, setTicketNumber] = useState('');
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [alteration_description, setAlterationDescription] = useState('');
     const [employee, setEmployee] = useState('');
+    const router = useRouter();
+
+    const resetForm = () => {
+      setTicketNumber("");
+      setFirstName("");
+      setLastName("");
+      setAlterationDescription("");
+      setEmployee("");
+      onSuccess();
+    }
 
     const onSubmitTicket = async(e) => {
       e.preventDefault();//don't want this to refresh
       try {
-        const response = await fetch(`http://localhost:3000/api/tickets/?ticket_number=${ticket_number}&first_name=${first_name}&last_name=${last_name}&alteration_description=${alteration_description}&employee=${employee}`);
-        
-        const parseResponse = await response.json();
+        // const response = await fetch(`http://localhost:3000/api/tickets/?ticket_number=${ticket_number}&first_name=${first_name}&last_name=${last_name}&alteration_description=${alteration_description}&employee=${employee}`);
+        // console.log(response.status);
 
-        console.log(parseResponse);
-      } catch (error) {
+        const response = await fetch("http://localhost:3000/api/tickets/",
+          {method: "POST",
+          headers:{
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ticket_number: ticket_number,
+          first_name: first_name,
+          last_name: last_name,
+          alteration_description: alteration_description,
+          employee: employee
+          })
+          })
+          console.log(response.status);
+        if(response.ok){
+        const parseResponse = await response.json();
+          console.log(parseResponse);
+          console.log('Redirecting to the index page...');
+          resetForm();
+          // router.push('/')
+          // window.location.reload();
+        } else {
+          console.error('API request failed');
+        }
+      } catch (err) {
         console.error(err.message);
       }
-    }
+    };
 
+    
+
+
+    // const router = useRouter();
+
+    // const handleSubmit = async (event) => {
+    //   event.preventDefault();
+      
+    //   const formData = { 
+    //     ticket_number: "",
+    //     first_name: "",
+    //     last_name: "",
+    //     alteration_description: "",
+    //     employee: ""
+    //   }
+
+    //   try {
+    //     const response = await fetch('./pages/api/tickets', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify(formData),
+    //     });
+
+    //     if (response.ok) {
+    //       router.push('/components/layout');
+    //     } else {
+    //       console.log('API request failed');
+    //     }
+    //   } catch(error){
+    //     console.log('Fetch request failed', error);
+    //   }
+    // }
 
     return (
-      <form action="/api/tickets" method="post" class="form-tickets">
+      <form class="form-tickets" onSubmit={onSubmitTicket} >
         <label > <h2> New Ticket</h2></label>
 
         <label htmlFor="ticket"><h4>Ticket Number</h4></label>
@@ -72,8 +139,9 @@ export default function Form() {
 
          </select>
          <br />
-        <button type="submit" className={styles.formTicket}  onSubmit={onSubmitTicket}>Submit Ticket</button>
+        <button type="submit" className={styles.formTicket}>Submit Ticket</button>
       </form>
+      
     );
   }
 
