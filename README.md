@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+Alterations Website to create, catalog, and search for customer information. 
